@@ -34,7 +34,7 @@
             "field": "country",
             "type": "nominal",
             "scale": {
-              "scheme": "sinebow"
+              "scheme": "tableau20"
             }
             }
           }
