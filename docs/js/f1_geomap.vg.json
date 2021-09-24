@@ -26,14 +26,18 @@
             "tooltip": [
                 {"field": "name","type": "nominal", "title": "Circuit name"},
                 {"field": "country","type": "nominal", "title": "Country"},
-                {"field": "location","type": "nominal", "title": "Location"}
+                {"field": "location","type": "nominal", "title": "Location"},
+                {"field": "lng", "type": "quantitative", "title": "Longitude"},
+                {"field": "lat", "type": "quantitative", "title": "Latitude"}
             ],
             "color": {
             "field": "country",
-            "type": "nominal"
+            "type": "nominal",
+            "scale": {
+              "scheme": "sinebow"
+            }
+            }
           }
-          }
-
         }
       ]
 }
