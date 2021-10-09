@@ -29,6 +29,7 @@
       }
     }
   ],
+  "data": { "url": "https://raw.githubusercontent.com/AeroG81/DataVisualisation/main/docs/Dataset/circuits.csv" },
   "layer": [
       {
         "data": {
@@ -39,7 +40,7 @@
       },
       {
         "data": {
-          "url": "../../Dataset/circuits.csv"
+          "url": "https://raw.githubusercontent.com/AeroG81/DataVisualisation/main/docs/Dataset/circuits.csv"
         },
         "mark": {
             "type": "circle"
@@ -64,6 +65,30 @@
         "transform": [
           {"filter": "Continent_selection == null || datum.continent == Continent_selection"}
         ]
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -12,
+          "fontSize": 13,
+          "fontStyle": "italic"
+          },
+          "encoding": {
+            "longitude": {"field": "lng", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "text": {"field": "country", "type": "nominal"},
+            "color": {"value": "black"},
+            "opacity": {
+              "condition": {
+                "test": "datum.country == 'Malaysia' || datum.country == 'Argentina' || datum.country == 'China'",
+                "value": 1
+              },
+                "value": 0
+            }
+          }
+         
       }
     ]
 }

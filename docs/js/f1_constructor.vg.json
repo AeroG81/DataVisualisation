@@ -1,15 +1,30 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "container",
+    "width": 1000,
     "height": 250,
-    "data": {"url": "../Dataset/constructors.csv"},
-    "mark": "bar",
-    "encoding": {
+    "data": {"url": "https://raw.githubusercontent.com/AeroG81/DataVisualisation/main/docs/Dataset/constructors.csv"},
+    "encoding": { 
       "x": {"field": "nationality","sort":"-y", "title": "Nationality"},
       "y": {"aggregate": "count", "title": "Number of Constructors"},
       "tooltip": [
-        {"field": "nationality", "type":"nominal", "title": "Nationality"},
-        {"aggregate": "count", "type": "quantitative",  "title": "Number of Constructors"}
+        {"aggregate": "count", "type": "quantitative",  "title": "Number of Constructors"},
+        {"field": "nationality", "type":"nominal", "title": "Nationality"}
       ]
-    }
+    },
+    "layer": [
+        {
+           "mark":"bar"
+        },
+        {
+            "mark": {
+                "type": "text", 
+                "align": "center", 
+                "baseline": "middle",
+                "dy":-10
+            },
+            "encoding": {"text": {"aggregate": "count", "type": "quantitative"}}
+        }
+    ]
+        
+    
 }
