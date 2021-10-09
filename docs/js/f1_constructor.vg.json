@@ -1,0 +1,15 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": 250,
+    "data": {"url": "../Dataset/constructors.csv"},
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "nationality","sort":"-y", "title": "Nationality"},
+      "y": {"aggregate": "count", "title": "Number of Constructors"},
+      "tooltip": [
+        {"field": "nationality", "type":"nominal", "title": "Nationality"},
+        {"aggregate": "count", "type": "quantitative",  "title": "Number of Constructors"}
+      ]
+    }
+}

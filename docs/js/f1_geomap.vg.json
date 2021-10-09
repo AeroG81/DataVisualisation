@@ -1,43 +1,69 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1000,
-    "height": 500,
-    "title": "F1 circuits around the globe",
-    "projection": {"type": "equalEarth"},
-    "layer": [
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/AeroG81/DataVisualisation/main/docs/topojson/ne_110m_admin_0_countries.topojson",
-            "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-          },
-          "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 500,
+  "title": "F1 circuits around the glove",
+  "projection": {"type": "equalEarth"},
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+          ],
+          "labels":[
+          "Show All",
+          "America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+          ],
+          "name": "Continent Selection: "
+      }
+    }
+  ],
+  "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
         },
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/AeroG81/DataVisualisation/main/docs/Dataset/circuits.csv"
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      },
+      {
+        "data": {
+          "url": "../../Dataset/circuits.csv"
+        },
+        "mark": {
+            "type": "circle"
           },
-          "mark": {
-              "type": "circle"
-            },
-          "encoding": { 
-            "longitude": {"field": "lng", "type": "quantitative"},
-            "latitude": {"field": "lat", "type": "quantitative"},
-            "size": {"value":30},
-            "tooltip": [
-                {"field": "name","type": "nominal", "title": "Circuit name"},
-                {"field": "country","type": "nominal", "title": "Country"},
-                {"field": "location","type": "nominal", "title": "Location"},
-                {"field": "lng", "type": "quantitative", "title": "Longitude"},
-                {"field": "lat", "type": "quantitative", "title": "Latitude"}
-            ],
-            "color": {
-            "field": "country",
+        "encoding": { 
+          "longitude": {"field": "lng", "type": "quantitative"},
+          "latitude": {"field": "lat", "type": "quantitative"},
+          "size": {"value": 30},
+          "color": {
+            "field": "continent",
             "type": "nominal",
             "scale": {
-              "scheme": "tableau20"
+              "scheme": "dark2"
             }
-            }
-          }
-        }
-      ]
+          },
+          "tooltip": [
+              {"field": "name","type": "nominal", "title": "Circuit name"},
+              {"field": "country","type": "nominal", "title": "Country"},
+              {"field": "location","type": "nominal", "title": "Location"}
+          ]
+        },
+        "transform": [
+          {"filter": "Continent_selection == null || datum.continent == Continent_selection"}
+        ]
+      }
+    ]
 }
